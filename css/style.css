@@ -15,3 +15,21 @@ header {
     border-radius: 5px;
     padding: 0 10px 0 10px;
 }
+
+main > p {
+    font-size: 2em;
+    color: rgb(68, 206, 149);
+    font-weight: bold;
+}
+
+.products,
+.basket {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+}
+
+.products > *,
+.basket > * {
+    margin-right: 20px;
+}
