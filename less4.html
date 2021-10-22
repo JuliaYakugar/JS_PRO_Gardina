@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesso 4</title>
+    <style>
+        #formValid {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        #formValid label {
+            width: 150px;
+            margin-bottom: 20px;
+        }
+        .errorStyle{
+            color: red;
+        }
+        .invalid{
+            border-color: red;
+        }
+        .valid{
+            border-color: green;
+        }
+    </style>
+</head>
+<body>
+<header>
+    
+</header>
+<main>
+    <div>
+        <p id="regText"> Mrs Dursley sipped her tea through pursed lips. Mr Dursley wondered whether he dared tell her he'd heard the name 'Potter'. He decided he didn't dare. Instead he said, as casually as he could, 'Their son – he'd be about Dudley's age now, wouldn't he?'
+            'I suppose so,' said Mrs Dursley stiffly.
+            'What's his name again? Howard, isn't it?'
+            'Harry. Nasty, common name, if you ask me.'
+            'Oh, yes,' said Mr Dursley, his heart sinking horribly. 'Yes, I quite agree.'
+            He didn't say another word on the subject as they went upstairs to bed. While Mrs Dursley was in the bathroom, Mr Dursley crept to the bedroom window and peered down into the front garden. The cat was still there. It was staring down Privet Drive as though it was waiting for something.
+        </p>
+        <button type="button" onclick="lesson1()">Lesson1</button>
+        <button type="button" onclick="lesson2()">Lesson2</button>
+    </div>
+    <div class="lesson3">
+        <form action="#" id="formValid">  
+            <label>Имя: <input class="inputStyle" type="text" id="imya"></label>
+            <label>Телефон: <input class="inputStyle" type="tel" id="tel"></label>
+            <label>E-mail: <input class="inputStyle" type="email" id="email"></label>
+            <button id="btn" type="submit" onclick="lesson3()">Отправить</button>
+        </form>
+    </div>
+</main>
+<script>
+    function lesson1() {
+        let text = document.getElementById('regText');
+        text.innerHTML = text.textContent.replace(/'/g, '"')
+    }
+    function lesson2() {
+        let text = document.getElementById('regText');
+        text.innerHTML = text.textContent.replace(/\B'|'\B/g, '"')
+    }
+
+    function lesson3() {
+        let errors = document.querySelectorAll('.errorStyle');
+        for (let error of errors){
+            error.remove();
+        }
+        let inputs = document.querySelectorAll('.inputStyle');
+        for (let i of inputs){
+            i.classList.remove('invalid');
+        }
+
+        let Imya = document.getElementById('imya');
+        if (/^[a-zа-яё]+$/i.test(Imya.value) !== true) {
+            Imya.insertAdjacentHTML('afterend', '<div class="errorStyle">Неверный формат только буквы</div>');
+            Imya.classList.add('invalid');
+        }
+        let Tel = document.getElementById('tel');
+        if (/^\+7\(\d{3}\)\d{3}-\d{2}-\d{2}$/.test(Tel.value) !== true) {
+            Tel.insertAdjacentHTML('afterend', '<div class="errorStyle">Неверный формат (пр.: +7(000)000-0000)</div>'); 
+            Tel.classList.add('invalid');
+            
+        }
+        let Email = document.getElementById('email');
+        if (/^[\w._-]+@\w+\.[a-z]{2,4}$/i.test(Email.value) !== true) {
+            Email.insertAdjacentHTML('afterend', '<div class="errorStyle">Неверный формат (пр.: name@mail.ru)</div>'); 
+            Email.classList.add('invalid');
+        }
+    }
+
+</script>
+</body>
+</html>
+
+
+
+
